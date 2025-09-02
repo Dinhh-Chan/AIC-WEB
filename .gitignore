@@ -1,0 +1,30 @@
+node_modules/
+./aic-2025/node_modules/
+./aic-admin-2025/node_modules/
+./AIC-BACK/venv/
+./AIC-BACK/.venv/
+./AIC-BACK/volumes/
+./AIC-BACK/docker/
+./AIC-BACK/data/
+./AIC-BACK/app/data/
+./AIC-BACK/app/data/submissions/
+./AIC-BACK/app/data/submissions/1/
+./node_modules
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Build outputs
+.next/
+out/
+build
+dist/
+
+# Misc
+.DS_Store
+*.pem
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
