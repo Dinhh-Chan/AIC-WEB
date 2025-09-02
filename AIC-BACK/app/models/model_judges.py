@@ -11,7 +11,7 @@ class Judges(BareBaseModel):
     email = Column(String, index=True)
     username = Column(String, unique=True, index=True)
     password_hash = Column(String)
-    
+    role = Column(String)
     # Relationships
     team_scores = relationship("TeamScores", back_populates="judge")
     member_scores = relationship("MemberScores", back_populates="judge")

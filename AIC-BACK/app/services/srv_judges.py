@@ -31,6 +31,10 @@ class JudgesService(BaseService[Judges]):
         password = judge_data.pop("password")
         judge_data["password_hash"] = get_password_hash(password)
         
+        # Ensure role is set
+        if "role" not in judge_data or not judge_data["role"]:
+            judge_data["role"] = "judge"
+        
         return self.create(judge_data)
     
     def update_judge(self, judge_id: int, obj_in: JudgesUpdate) -> Judges:
@@ -59,6 +63,14 @@ class JudgesService(BaseService[Judges]):
             password = update_data.pop("password")
             update_data["password_hash"] = get_password_hash(password)
         
+        # Validate role update
+        if "role" in update_data:
+            if update_data["role"] not in ["admin", "judge"]:
+                raise CustomException(
+                    exception=ExceptionType.VALIDATION_ERROR,
+                    detail="Invalid role. Must be either 'admin' or 'judge'"
+                )
+        
         return self.partial_update_by_id(judge_id, update_data)
     
     def authenticate(self, username: str, password: str) -> Optional[Judges]:
@@ -72,6 +84,7 @@ class JudgesService(BaseService[Judges]):
     def search_judges(
         self,
         search_term: Optional[str] = None,
+        role: Optional[str] = None,
         pagination_params: Optional[PaginationParams] = PaginationParams(),
         sort_params: Optional[SortParams] = SortParams(),
     ) -> Tuple[List[Judges], MetadataResponse]:
@@ -87,9 +100,26 @@ class JudgesService(BaseService[Judges]):
                 )
             )
         
+        # Filter by role if provided
+        if role:
+            if role not in ["admin", "judge"]:
+                raise CustomException(
+                    exception=ExceptionType.VALIDATION_ERROR,
+                    detail="Invalid role filter. Must be either 'admin' or 'judge'"
+                )
+            query = query.filter(Judges.role == role)
+        
         return paginate(
             model=self.model,
             query=query,
             pagination_params=pagination_params,
             sort_params=sort_params,
         )
+    
+    def get_admins(self) -> List[Judges]:
+        """Get all admin judges"""
+        return db.session.query(Judges).filter(Judges.role == "admin").all()
+    
+    def get_regular_judges(self) -> List[Judges]:
+        """Get all regular judges"""
+        return db.session.query(Judges).filter(Judges.role == "judge").all()

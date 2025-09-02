@@ -1,6 +1,7 @@
 from typing import Any, List, Optional
 from fastapi import APIRouter, Depends, status, Query
-from app.utils.exception_handler import CustomException
+from pydantic import BaseModel
+from app.utils.exception_handler import CustomException, ExceptionType
 from app.schemas.sche_response import DataResponse
 from app.schemas.sche_base import PaginationParams, SortParams
 from app.schemas.sche_teams import (
@@ -13,6 +14,11 @@ from app.services.srv_teams import TeamsService
 router = APIRouter(prefix="/teams")
 
 teams_service: TeamsService = TeamsService()
+
+
+class LoginRequest(BaseModel):
+    username: str
+    password: str
 
 
 @router.get(
@@ -91,11 +97,11 @@ def delete_team(team_id: int) -> None:
     response_model=DataResponse[Teams],
     status_code=status.HTTP_200_OK,
 )
-def authenticate_team(username: str, password: str) -> Any:
+def authenticate_team(login_data: LoginRequest) -> Any:
     try:
-        team = teams_service.authenticate(username=username, password=password)
+        team = teams_service.authenticate(username=login_data.username, password=login_data.password)
         if not team:
-            raise CustomException(exception="Invalid credentials")
+            raise CustomException(exception=ExceptionType.UNAUTHORIZED, detail="Invalid username or password")
         return DataResponse(http_code=status.HTTP_200_OK, data=team)
     except Exception as e:
         raise CustomException(exception=e)

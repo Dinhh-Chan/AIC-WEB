@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Calendar, Trophy, Users, FileText, Star, Award } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function HomePage() {
   return (
@@ -52,9 +53,11 @@ export default function HomePage() {
               <a href="#schedule" className="text-gray-700 hover:text-blue-600 transition-colors">
                 Lịch thi
               </a>
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-                Đăng nhập
-              </Button>
+              <Link href="/login">
+                <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                  Đăng nhập
+                </Button>
+              </Link>
             </nav>
           </div>
         </div>
@@ -73,12 +76,14 @@ export default function HomePage() {
                 triển
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-3"
-                >
-                  Tham gia ngay
-                </Button>
+                <Link href="/register">
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-3"
+                  >
+                    Tham gia ngay
+                  </Button>
+                </Link>
                 <Button
                   size="lg"
                   variant="outline"

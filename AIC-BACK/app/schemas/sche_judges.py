@@ -1,5 +1,5 @@
 from pydantic import BaseModel, EmailStr
-from typing import Optional, List
+from typing import Optional, List, Literal
 from app.schemas.sche_base import BaseModelResponse
 
 
@@ -8,6 +8,7 @@ class JudgesBase(BaseModel):
     phone: Optional[str] = None
     email: EmailStr
     username: str
+    role: Literal["admin", "judge"] = "judge"
 
 
 class JudgesCreate(JudgesBase):
@@ -20,6 +21,7 @@ class JudgesUpdate(BaseModel):
     email: Optional[EmailStr] = None
     username: Optional[str] = None
     password: Optional[str] = None
+    role: Optional[Literal["admin", "judge"]] = None
 
 
 class JudgesInDBBase(JudgesBase, BaseModelResponse):

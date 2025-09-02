@@ -6,6 +6,7 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
+from alembic.operations import ops
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(BASE_DIR)
@@ -30,6 +31,13 @@ if config.config_file_name is not None:
 from app.models import Base
 
 target_metadata = Base.metadata
+
+# Custom render_item function to handle auto-generated migrations
+def render_item(type_, obj, autogen_context):
+    """Apply custom rendering for selected items."""
+    if type_ == "type" and obj.__class__.__module__.startswith("sqlalchemy."):
+        return False
+    return None  # Use default rendering for all other objects
 
 
 # other values from the config, defined by the needs of env.py,
@@ -59,6 +67,17 @@ def run_migrations_offline() -> None:
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
+        # Enable auto-generating migrations by comparing models to database
+        compare_type=True,
+        compare_server_default=True,
+        # Include schemas in auto-generated migrations
+        include_schemas=True,
+        # Include object names in auto-generated migrations
+        include_name=True,
+        # Include index names in auto-generated migrations
+        include_index_names=True,
+        # Include constraints in auto-generated migrations
+        render_item=render_item,
     )
 
     with context.begin_transaction():
@@ -79,7 +98,21 @@ def run_migrations_online() -> None:
     )
 
     with connectable.connect() as connection:
-        context.configure(connection=connection, target_metadata=target_metadata)
+        context.configure(
+            connection=connection, 
+            target_metadata=target_metadata,
+            # Enable auto-generating migrations by comparing models to database
+            compare_type=True,
+            compare_server_default=True,
+            # Include schemas in auto-generated migrations
+            include_schemas=True,
+            # Include object names in auto-generated migrations
+            include_name=True,
+            # Include index names in auto-generated migrations
+            include_index_names=True,
+            # Include constraints in auto-generated migrations
+            render_item=render_item,
+        )
 
         with context.begin_transaction():
             context.run_migrations()

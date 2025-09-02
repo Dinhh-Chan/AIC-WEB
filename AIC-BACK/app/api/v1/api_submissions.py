@@ -1,5 +1,5 @@
 from typing import Any, List, Optional
-from fastapi import APIRouter, Depends, status, Query
+from fastapi import APIRouter, Depends, status, Query, UploadFile, File, Form
 from app.utils.exception_handler import CustomException
 from app.schemas.sche_response import DataResponse
 from app.schemas.sche_base import PaginationParams, SortParams
@@ -23,8 +23,8 @@ submissions_service: SubmissionsService = SubmissionsService()
 def search_submissions(
     search_term: Optional[str] = Query(None, description="Search term for submission files and status"),
     team_id: Optional[int] = Query(None, description="Filter by team ID"),
-    round: Optional[str] = Query(None, description="Filter by round"),
-    status: Optional[str] = Query(None, description="Filter by status"),
+
+    status_submission: Optional[str] = Query(None, description="Filter by status"),
     sort_params: SortParams = Depends(),
     pagination_params: PaginationParams = Depends(),
 ) -> Any:
@@ -32,14 +32,13 @@ def search_submissions(
         data, metadata = submissions_service.search_submissions(
             search_term=search_term,
             team_id=team_id,
-            round=round,
-            status=status,
+            status_submission=status_submission,
             pagination_params=pagination_params, 
             sort_params=sort_params
         )
         return DataResponse(http_code=status.HTTP_200_OK, data=data, metadata=metadata)
     except Exception as e:
-        raise CustomException(exception=e)
+        raise e
 
 
 @router.get(
@@ -63,25 +62,6 @@ def get_team_submissions(
         raise CustomException(exception=e)
 
 
-@router.get(
-    "/round/{round}",
-    response_model=DataResponse[List[Submissions]],
-    status_code=status.HTTP_200_OK,
-)
-def get_round_submissions(
-    round: str,
-    sort_params: SortParams = Depends(),
-    pagination_params: PaginationParams = Depends(),
-) -> Any:
-    try:
-        data, metadata = submissions_service.get_round_submissions(
-            round=round,
-            pagination_params=pagination_params, 
-            sort_params=sort_params
-        )
-        return DataResponse(http_code=status.HTTP_200_OK, data=data, metadata=metadata)
-    except Exception as e:
-        raise CustomException(exception=e)
 
 
 @router.post(
@@ -89,12 +69,32 @@ def get_round_submissions(
     response_model=DataResponse[Submissions],
     status_code=status.HTTP_201_CREATED,
 )
-def create_submission(submission_data: SubmissionsCreate) -> Any:
+async def create_submission(
+    team_id: int = Form(...),
+    project_title: str = Form(...),
+    description: str = Form(...),
+    technology: str = Form(...),
+    status_submission: str = Form(default="submitted"),
+    report_file: Optional[UploadFile] = File(None),
+    slide_file: Optional[UploadFile] = File(None),
+    video_url: Optional[str] = Form(None),
+    source_code_url: Optional[str] = Form(None),
+) -> Any:
     try:
-        new_submission = submissions_service.create_submission(obj_in=submission_data)
+        new_submission = await submissions_service.create_submission_with_files(
+            team_id=team_id,
+            project_title=project_title,
+            description=description,
+            technology=technology,
+            status_submission=status_submission,
+            report_file=report_file,
+            slide_file=slide_file,
+            video_url=video_url,
+            source_code_url=source_code_url,
+        )
         return DataResponse(http_code=status.HTTP_201_CREATED, data=new_submission)
     except Exception as e:
-        raise CustomException(exception=e)
+        raise e
 
 
 @router.get(
@@ -107,7 +107,7 @@ def get_submission_by_id(submission_id: int) -> Any:
         submission = submissions_service.get_by_id(id=submission_id)
         return DataResponse(http_code=status.HTTP_200_OK, data=submission)
     except Exception as e:
-        raise CustomException(exception=e)
+        raise e
 
 
 @router.put(
@@ -115,11 +115,28 @@ def get_submission_by_id(submission_id: int) -> Any:
     response_model=DataResponse[Submissions],
     status_code=status.HTTP_200_OK,
 )
-def update_submission(submission_id: int, submission_data: SubmissionsUpdate) -> Any:
+async def update_submission(
+    submission_id: int,
+    project_title: Optional[str] = Form(None),
+    description: Optional[str] = Form(None),
+    technology: Optional[str] = Form(None),
+    status_submission: Optional[str] = Form(None),
+    report_file: Optional[UploadFile] = File(None),
+    slide_file: Optional[UploadFile] = File(None),
+    video_url: Optional[str] = Form(None),
+    source_code_url: Optional[str] = Form(None),
+) -> Any:
     try:
-        updated_submission = submissions_service.update_submission(
-            submission_id=submission_id, 
-            obj_in=submission_data
+        updated_submission = await submissions_service.update_submission_with_files(
+            submission_id=submission_id,
+            project_title=project_title,
+            description=description,
+            technology=technology,
+            status_submission=status_submission,
+            report_file=report_file,
+            slide_file=slide_file,
+            video_url=video_url,
+            source_code_url=source_code_url,
         )
         return DataResponse(http_code=status.HTTP_200_OK, data=updated_submission)
     except Exception as e:

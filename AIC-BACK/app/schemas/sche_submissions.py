@@ -5,13 +5,16 @@ from app.schemas.sche_base import BaseModelResponse
 
 class SubmissionsBase(BaseModel):
     team_id: int
-    round: str
+
+    project_title: Optional[str] = None
+    description: Optional[str] = None
+    technology: Optional[str] = None
     report_file: Optional[str] = None
     slide_file: Optional[str] = None
     video_url: Optional[str] = None
     source_code_url: Optional[str] = None
-    status: str
-    submitted_at: float
+    status_submission: str
+    submitted_at: Optional[str] = None  # ISO format string
 
 
 class SubmissionsCreate(SubmissionsBase):
@@ -19,12 +22,15 @@ class SubmissionsCreate(SubmissionsBase):
 
 
 class SubmissionsUpdate(BaseModel):
+    project_title: Optional[str] = None
+    description: Optional[str] = None
+    technology: Optional[str] = None
     report_file: Optional[str] = None
     slide_file: Optional[str] = None
     video_url: Optional[str] = None
     source_code_url: Optional[str] = None
-    status: Optional[str] = None
-    submitted_at: Optional[float] = None
+    status_submission: Optional[str] = None
+    submitted_at: Optional[str] = None  # ISO format string
 
 
 class SubmissionsInDBBase(SubmissionsBase, BaseModelResponse):

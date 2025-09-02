@@ -22,16 +22,44 @@ judges_service: JudgesService = JudgesService()
 )
 def search_judges(
     search_term: Optional[str] = Query(None, description="Search term for name, email, phone, username"),
+    role: Optional[str] = Query(None, description="Filter by role (admin or judge)"),
     sort_params: SortParams = Depends(),
     pagination_params: PaginationParams = Depends(),
 ) -> Any:
     try:
         data, metadata = judges_service.search_judges(
             search_term=search_term,
+            role=role,
             pagination_params=pagination_params, 
             sort_params=sort_params
         )
         return DataResponse(http_code=status.HTTP_200_OK, data=data, metadata=metadata)
+    except Exception as e:
+        raise CustomException(exception=e)
+
+
+@router.get(
+    "/admins",
+    response_model=DataResponse[List[Judges]],
+    status_code=status.HTTP_200_OK,
+)
+def get_admins() -> Any:
+    try:
+        admins = judges_service.get_admins()
+        return DataResponse(http_code=status.HTTP_200_OK, data=admins)
+    except Exception as e:
+        raise CustomException(exception=e)
+
+
+@router.get(
+    "/regular",
+    response_model=DataResponse[List[Judges]],
+    status_code=status.HTTP_200_OK,
+)
+def get_regular_judges() -> Any:
+    try:
+        judges = judges_service.get_regular_judges()
+        return DataResponse(http_code=status.HTTP_200_OK, data=judges)
     except Exception as e:
         raise CustomException(exception=e)
 

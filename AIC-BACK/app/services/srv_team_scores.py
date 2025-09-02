@@ -221,8 +221,6 @@ class TeamScoresService(BaseService[TeamScores]):
         subquery = db.session.query(
             TeamScores.team_id,
             func.avg(TeamScores.total_score).label("avg_score")
-        ).filter(
-            TeamScores.round == round
         ).group_by(
             TeamScores.team_id
         ).subquery()
