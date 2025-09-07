@@ -214,10 +214,10 @@ function JudgeScheduleContent() {
 
 export default function JudgeSchedulePage() {
   return (
-    <ProtectedRoute allowedRoles={["judge"]}>
+    // <ProtectedRoute allowedRoles={["judge"]}>
       <JudgeLayout activeTab="schedule">
         <JudgeScheduleContent />
       </JudgeLayout>
-    </ProtectedRoute>
+    // </ProtectedRoute>
   )
 }

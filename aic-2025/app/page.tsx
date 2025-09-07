@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, Trophy, Users, FileText, Star, Award } from "lucide-react"
+import { Calendar, Trophy, Users, FileText } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -126,7 +126,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">
-                  Sinh viên các trường đại học, cao đẳng trên toàn quốc. Mỗi đội từ 2-4 thành viên.
+                  Tất cả sinh viên các trường đại học, cao đẳng toàn quốc. Mỗi đội 3-4 thành viên, có ít nhất 2 sinh viên CNTT và ít nhất 1 nam, 1 nữ.
                 </p>
               </CardContent>
             </Card>
@@ -136,7 +136,12 @@ export default function HomePage() {
                 <CardTitle className="text-purple-800">Yêu cầu</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">Ý tưởng ứng dụng AI sáng tạo, khả thi và có tính ứng dụng thực tế cao.</p>
+                <p className="text-gray-600 mb-2">
+                  <strong>Tính ứng dụng cao:</strong> Giải quyết vấn đề thực tiễn trong giáo dục & học tập, hỗ trợ cộng đồng & công việc xã hội, văn hóa - ngôn ngữ & sáng tạo nội dung.
+                </p>
+                <p className="text-gray-600">
+                  <strong>Đổi mới sáng tạo:</strong> Ý tưởng có sự khác biệt, sáng tạo và khả năng triển khai thực tế.
+                </p>
               </CardContent>
             </Card>
             <Card className="border-blue-200 hover:shadow-lg transition-shadow">
@@ -145,7 +150,13 @@ export default function HomePage() {
                 <CardTitle className="text-blue-800">Thời gian</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">Cuộc thi diễn ra từ tháng 3 đến tháng 6 năm 2025 với 3 vòng thi chính.</p>
+                <div className="text-gray-600 space-y-1">
+                  <p><strong>15/09:</strong> Hạn đăng ký đội tham gia</p>
+                  <p><strong>19/09:</strong> Nộp sản phẩm ý tưởng</p>
+                  <p><strong>21/09:</strong> Vòng 1 & Công bố kết quả</p>
+                  <p><strong>22/09-02/10:</strong> Phát triển sản phẩm</p>
+                  <p><strong>03/10:</strong> Vòng chung kết</p>
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -166,18 +177,24 @@ export default function HomePage() {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-2xl text-blue-800">Vòng 1: Ý tưởng</CardTitle>
-                  <Badge className="bg-blue-100 text-blue-800">Tháng 3-4</Badge>
+                  <Badge className="bg-blue-100 text-blue-800">21/09</Badge>
                 </div>
-                <CardDescription className="text-lg">Trình bày ý tưởng và kế hoạch thực hiện</CardDescription>
+                <CardDescription className="text-lg">Trình bày ý tưởng và sản phẩm demo</CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-4">
-                  Các đội trình bày ý tưởng ứng dụng AI thông qua tài liệu và video demo. Tập trung vào tính sáng tạo,
-                  khả thi và tác động xã hội.
+                  Các đội nộp tài liệu và thuyết trình trước Ban giám khảo về ý tưởng ứng dụng AI:
                 </p>
+                <div className="space-y-2 mb-4">
+                  <p className="text-gray-600"><strong>• Báo cáo chi tiết (5-10 trang):</strong> Giới thiệu sản phẩm, lý do chọn đề tài, chức năng chính, mô hình kinh doanh, khó khăn, hướng phát triển, phân công công việc</p>
+                  <p className="text-gray-600"><strong>• Slide thuyết trình</strong></p>
+                  <p className="text-gray-600"><strong>• Video demo sản phẩm:</strong> Giới thiệu chức năng, giao diện</p>
+                  <p className="text-gray-600"><strong>• Source code</strong></p>
+                </div>
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="outline">Tài liệu PDF</Badge>
-                  <Badge variant="outline">Video 5 phút</Badge>
+                  <Badge variant="outline">Báo cáo PDF</Badge>
+                  <Badge variant="outline">Video demo</Badge>
+                  <Badge variant="outline">Source code</Badge>
                   <Badge variant="outline">Thuyết trình</Badge>
                 </div>
               </CardContent>
@@ -186,96 +203,25 @@ export default function HomePage() {
             <Card className="border-l-4 border-l-purple-500 hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-2xl text-purple-800">Vòng 2: Bán kết</CardTitle>
-                  <Badge className="bg-purple-100 text-purple-800">Tháng 5</Badge>
+                  <CardTitle className="text-2xl text-purple-800">Vòng chung kết</CardTitle>
+                  <Badge className="bg-purple-100 text-purple-800">03/10</Badge>
                 </div>
-                <CardDescription className="text-lg">Phát triển prototype và demo sản phẩm</CardDescription>
+                <CardDescription className="text-lg">Thuyết trình và demo sản phẩm trực tiếp</CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-4">
-                  Xây dựng prototype hoạt động, demo trực tiếp và trả lời câu hỏi từ ban giám khảo. Đánh giá kỹ thuật và
-                  khả năng thực hiện.
+                  Trình bày trực tiếp trước Ban Giám khảo với các nội dung:
                 </p>
+                <div className="space-y-2 mb-4">
+                  <p className="text-gray-600"><strong>• Nội dung thuyết trình:</strong> Chức năng chính, công nghệ sử dụng, giải pháp thực tế, tiềm năng phát triển</p>
+                  <p className="text-gray-600"><strong>• Demo sản phẩm trực tiếp</strong></p>
+                  <p className="text-gray-600"><strong>• Q&A:</strong> Ban Giám khảo đặt câu hỏi đánh giá sâu về ý tưởng, sản phẩm, năng lực đội</p>
+                </div>
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="outline">Prototype</Badge>
-                  <Badge variant="outline">Demo trực tiếp</Badge>
-                  <Badge variant="outline">Q&A</Badge>
+                  <Badge variant="outline">Thuyết trình trực tiếp</Badge>
+                  <Badge variant="outline">Demo sản phẩm</Badge>
+                  <Badge variant="outline">Q&A với BGK</Badge>
                 </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-l-4 border-l-yellow-500 hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-2xl text-yellow-800">Vòng 3: Chung kết</CardTitle>
-                  <Badge className="bg-yellow-100 text-yellow-800">Tháng 6</Badge>
-                </div>
-                <CardDescription className="text-lg">Sản phẩm hoàn thiện và kế hoạch thương mại hóa</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  Trình bày sản phẩm hoàn thiện, kế hoạch kinh doanh và chiến lược phát triển. Đánh giá tổng thể và tiềm
-                  năng thương mại.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="outline">Sản phẩm hoàn thiện</Badge>
-                  <Badge variant="outline">Business Plan</Badge>
-                  <Badge variant="outline">Pitch 15 phút</Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Scoring Criteria */}
-      <section className="py-16 bg-white/50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Tiêu chí chấm điểm
-            </h2>
-            <p className="text-xl text-gray-600">Cách thức đánh giá các vòng thi</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            <Card className="text-center border-blue-200 hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <Star className="w-12 h-12 text-yellow-500 mx-auto mb-2" />
-                <CardTitle className="text-blue-800">Tính sáng tạo</CardTitle>
-                <CardDescription className="text-2xl font-bold text-purple-600">25%</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">Độ mới mẻ và sáng tạo của ý tưởng</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center border-purple-200 hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <Award className="w-12 h-12 text-blue-500 mx-auto mb-2" />
-                <CardTitle className="text-purple-800">Tính khả thi</CardTitle>
-                <CardDescription className="text-2xl font-bold text-blue-600">30%</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">Khả năng thực hiện và triển khai</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center border-blue-200 hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <Users className="w-12 h-12 text-green-500 mx-auto mb-2" />
-                <CardTitle className="text-blue-800">Tác động xã hội</CardTitle>
-                <CardDescription className="text-2xl font-bold text-purple-600">25%</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">Lợi ích mang lại cho cộng đồng</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center border-purple-200 hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <FileText className="w-12 h-12 text-purple-500 mx-auto mb-2" />
-                <CardTitle className="text-purple-800">Trình bày</CardTitle>
-                <CardDescription className="text-2xl font-bold text-blue-600">20%</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">Kỹ năng thuyết trình và demo</p>
               </CardContent>
             </Card>
           </div>
@@ -287,23 +233,22 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Giải thưởng
+              Giải thưởng & Lợi ích
             </h2>
-            <p className="text-xl text-gray-600">Tổng giá trị giải thưởng lên đến 500 triệu VNĐ</p>
+            <p className="text-xl text-gray-600">Những phần thưởng hấp dẫn đang chờ đón bạn</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
             <Card className="text-center border-yellow-300 bg-gradient-to-b from-yellow-50 to-yellow-100 hover:shadow-xl transition-shadow">
               <CardHeader>
                 <Trophy className="w-16 h-16 text-yellow-600 mx-auto mb-4" />
                 <CardTitle className="text-3xl text-yellow-800">Giải Nhất</CardTitle>
-                <CardDescription className="text-4xl font-bold text-yellow-600">200 triệu VNĐ</CardDescription>
+                <CardDescription className="text-4xl font-bold text-yellow-600">5.000.000 VNĐ</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="text-gray-700 space-y-2">
-                  <li>• Tiền mặt 200 triệu VNĐ</li>
-                  <li>• Cơ hội đầu tư từ quỹ Venture Capital</li>
-                  <li>• Hỗ trợ inkubator 1 năm</li>
-                  <li>• Chứng nhận và cúp vàng</li>
+                  <li>🏆 Tiền mặt 5.000.000đ</li>
+                  <li>📜 Chứng nhận chính thức</li>
+                  <li>🎁 Quà tặng đặc biệt</li>
                 </ul>
               </CardContent>
             </Card>
@@ -312,14 +257,13 @@ export default function HomePage() {
               <CardHeader>
                 <Trophy className="w-16 h-16 text-gray-600 mx-auto mb-4" />
                 <CardTitle className="text-3xl text-gray-800">Giải Nhì</CardTitle>
-                <CardDescription className="text-4xl font-bold text-gray-600">150 triệu VNĐ</CardDescription>
+                <CardDescription className="text-4xl font-bold text-gray-600">3.000.000 VNĐ</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="text-gray-700 space-y-2">
-                  <li>• Tiền mặt 150 triệu VNĐ</li>
-                  <li>• Hỗ trợ mentoring 6 tháng</li>
-                  <li>• Khóa học AI chuyên sâu</li>
-                  <li>• Chứng nhận và cúp bạc</li>
+                  <li>🥈 Tiền mặt 3.000.000đ</li>
+                  <li>📜 Chứng nhận chính thức</li>
+                  <li>🎁 Quà tặng đặc biệt</li>
                 </ul>
               </CardContent>
             </Card>
@@ -328,24 +272,73 @@ export default function HomePage() {
               <CardHeader>
                 <Trophy className="w-16 h-16 text-orange-600 mx-auto mb-4" />
                 <CardTitle className="text-3xl text-orange-800">Giải Ba</CardTitle>
-                <CardDescription className="text-4xl font-bold text-orange-600">100 triệu VNĐ</CardDescription>
+                <CardDescription className="text-4xl font-bold text-orange-600">2.000.000 VNĐ</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="text-gray-700 space-y-2">
-                  <li>• Tiền mặt 100 triệu VNĐ</li>
-                  <li>• Laptop cao cấp cho team</li>
-                  <li>• Khóa học online 1 năm</li>
-                  <li>• Chứng nhận và cúp đồng</li>
+                  <li>🥉 Tiền mặt 2.000.000đ</li>
+                  <li>📜 Chứng nhận chính thức</li>
+                  <li>🎁 Quà tặng đặc biệt</li>
                 </ul>
               </CardContent>
             </Card>
           </div>
-          <div className="text-center mt-12">
-            <p className="text-lg text-gray-600 mb-4">Ngoài ra còn có các giải khuyến khích và giải thưởng đặc biệt</p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Badge className="bg-blue-100 text-blue-800 text-lg px-4 py-2">Giải Sáng tạo nhất</Badge>
-              <Badge className="bg-purple-100 text-purple-800 text-lg px-4 py-2">Giải Ứng dụng thực tế</Badge>
-              <Badge className="bg-green-100 text-green-800 text-lg px-4 py-2">Giải Tác động xã hội</Badge>
+          
+          {/* Benefits Section */}
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-3xl font-bold text-center mb-8 text-gray-800">Lợi ích tham gia cuộc thi</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card className="border-blue-200 hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-xl text-blue-800 flex items-center gap-2">
+                    📜 Chứng nhận chính thức
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    Nhận giấy chứng nhận tham dự chính thức từ Viện Khoa học Kỹ thuật Bưu điện - Học viện Công nghệ Bưu chính Viễn thông làm đẹp thêm hồ sơ cá nhân.
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card className="border-purple-200 hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-xl text-purple-800 flex items-center gap-2">
+                    👨‍🏫 Training từ chuyên gia
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    Được training từ các chuyên gia giúp nâng cao kiến thức, kỹ năng và hoàn thiện sản phẩm của nhóm.
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card className="border-green-200 hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-xl text-green-800 flex items-center gap-2">
+                    🚀 Thử thách bản thân
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    Thử thách bản thân, rèn luyện tư duy và kỹ năng teamwork qua các bài toán thực tế.
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card className="border-yellow-200 hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-xl text-yellow-800 flex items-center gap-2">
+                    🎯 Nhiều giải phụ hấp dẫn
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    Ngoài 3 giải chính, còn có nhiều giải phụ và giải thưởng đặc biệt đang chờ đón các đội thi.
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
