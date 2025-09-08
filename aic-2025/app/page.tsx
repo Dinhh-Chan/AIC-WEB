@@ -7,7 +7,7 @@ import Link from "next/link"
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-blue-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-blue-100 text-lg md:text-xl">
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-sm border-b border-blue-200 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
@@ -66,12 +66,12 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="py-20 text-center">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-center justify-between max-w-7xl mx-auto">
             <div className="lg:w-1/2 mb-10 lg:mb-0">
-              <h1 className="text-5xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent leading-tight">
+              <h1 className="text-6xl lg:text-8xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent leading-tight">
                 CUỘC THI AIC 2025
               </h1>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+              <p className="text-2xl text-gray-700 mb-8 leading-relaxed">
                 Cuộc thi Trí tuệ Nhân tạo hàng đầu dành cho sinh viên - Nơi những ý tưởng sáng tạo được thể hiện và phát
                 triển
               </p>
@@ -113,12 +113,12 @@ export default function HomePage() {
       <section id="rules" className="py-16 bg-white/50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Thể lệ cuộc thi
             </h2>
-            <p className="text-xl text-gray-600">Quy định và điều kiện tham gia</p>
+            <p className="text-2xl text-gray-600">Quy định và điều kiện tham gia</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
             <Card className="border-blue-200 hover:shadow-lg transition-shadow">
               <CardHeader>
                 <Users className="w-8 h-8 text-blue-600 mb-2" />
@@ -167,12 +167,12 @@ export default function HomePage() {
       <section id="rounds" className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Các vòng thi
             </h2>
-            <p className="text-xl text-gray-600">Hành trình chinh phục đỉnh cao AI</p>
+            <p className="text-2xl text-gray-600">Hành trình chinh phục đỉnh cao AI</p>
           </div>
-          <div className="max-w-4xl mx-auto space-y-8">
+          <div className="max-w-6xl mx-auto space-y-8">
             <Card className="border-l-4 border-l-blue-500 hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="flex items-center justify-between">
@@ -232,12 +232,12 @@ export default function HomePage() {
       <section id="prizes" className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Giải thưởng & Lợi ích
             </h2>
-            <p className="text-xl text-gray-600">Những phần thưởng hấp dẫn đang chờ đón bạn</p>
+            <p className="text-2xl text-gray-600">Những phần thưởng hấp dẫn đang chờ đón bạn</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
+          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto mb-12">
             <Card className="text-center border-yellow-300 bg-gradient-to-b from-yellow-50 to-yellow-100 hover:shadow-xl transition-shadow">
               <CardHeader>
                 <Trophy className="w-16 h-16 text-yellow-600 mx-auto mb-4" />
@@ -285,7 +285,7 @@ export default function HomePage() {
           </div>
           
           {/* Benefits Section */}
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <h3 className="text-3xl font-bold text-center mb-8 text-gray-800">Lợi ích tham gia cuộc thi</h3>
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="border-blue-200 hover:shadow-lg transition-shadow">
@@ -380,8 +380,8 @@ export default function HomePage() {
             <div>
               <h4 className="text-lg font-semibold mb-4">Liên hệ</h4>
               <div className="text-blue-200 space-y-2">
-                <p>Email: info@aic2025.vn</p>
-                <p>Hotline: 1900 1234</p>
+                <p>Email: dinhtran29092005@gmail.com</p>
+                <p>Hotline: 0989811424</p>
                 <p>Địa chỉ: Hà Nội, Việt Nam</p>
               </div>
             </div>
